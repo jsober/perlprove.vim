@@ -22,23 +22,40 @@ endif
 let s:savecpo = &cpo
 set cpo&vim
 
-" Usage: :make - prove the current testfile
-CompilerSet makeprg=prove\ -lmwfv\ --nocolor\ --nocount\ %
+if exists('g:perl_compiler_force_warnings') && g:perl_compiler_force_warnings == 0
+  let s:warnopt = 'w'
+else
+  let s:warnopt = 'W'
+endif
 
-" Test2
-CompilerSet efm =%Enot\ ok\ %.%#
+if getline(1) =~# '-[^ ]*T' || g:perl_compiler_force_taint_mode == 1
+  let s:taintopt = 'T'
+else
+  let s:taintopt = ''
+endif
+
+exe 'CompilerSet makeprg=prove\ --nocolor\ --nocount\ -lmfv' . s:warnopt . s:taintopt . '\ %'
+
+"TAP ok
+CompilerSet efm =%+Cok\ %.%#
+
+"TAP not ok
+CompilerSet efm+=%Enot\ ok\ %.%#
 CompilerSet efm+=%C
 CompilerSet efm+=%C#\ %#Failed\ test\ '%m'
 CompilerSet efm+=%Z#\ %#at\ %f\ line\ %l.
+CompilerSet efm+=%Z#\ %#in\ %f\ at\ line\ %l.
+CompilerSet efm+=%+C#%.%#
 
-" TAP comments
-CompilerSet efm+=%-G#\ %#%m
-
-" Perl syntax errors (from perl compiler package)
+"Perl syntax errors, etc, from perl compiler package
+CompilerSet efm+=%-G%.%#had\ compilation\ errors.
+CompilerSet efm+=%-G%.%#syntax\ OK
 CompilerSet efm+=%m\ at\ %f\ line\ %l.
+CompilerSet efm+=%+A%.%#\ at\ %f\ line\ %l\\,%.%#
+CompilerSet efm+=%+C%.%#
 
-" Ignore all other messages
-CompilerSet efm+=%-G%.%#
+"Ignore all other messages
+"CompilerSet efm+=%-G%.%#
 
 let &cpo = s:savecpo
 unlet s:savecpo
