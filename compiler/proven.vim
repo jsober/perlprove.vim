@@ -10,13 +10,13 @@ endif
 let s:savecpo = &cpo
 set cpo&vim
 
-if exists('g:perl_compiler_force_warnings') && g:perl_compiler_force_warnings == 0
+if g:proven_force_warn == 0
   let s:warnopt = 'w'
 else
   let s:warnopt = 'W'
 endif
 
-if getline(1) =~# '-[^ ]*T' || g:perl_compiler_force_taint_mode == 1
+if getline(1) =~# '-[^ ]*[tT]' || g:proven_taint_mode == 1
   let s:taintopt = 'T'
 else
   let s:taintopt = ''

@@ -9,8 +9,8 @@ and swapping the extension (e.g. `s/\.pm$/.t/`).
 Installation
 ============
 
-Using Vundle
-------------
+I am too lazy to type out full instructions for manual installation or
+anything harder than Vundle.
 
 Add to your .vimrc between `call vundle#begin()` and `call vundle#end()`:
 
@@ -19,18 +19,6 @@ Add to your .vimrc between `call vundle#begin()` and `call vundle#end()`:
 Then install from within vim:
 
     :VundleInstall
-
-Manually
---------
-
-Download or clone repo and:
-
-    mkdir -p ~/.vim/compiler
-    mkdir -p ~/.vim/autoload
-
-    cd /path/to/wherever/you/put/proven
-    cp compiler/proven.vim ~/.vim/compiler
-    cp autoload/proven.vim ~/.vim/autoload
 
 Enable
 ======
@@ -42,17 +30,20 @@ Add to your .vimrc:
     autocmd  BufEnter,BufNewFile *.t compiler proven
 
     " Add some handy mappings
-    noremap <Leader>v :call proven#OpenUnitTest()<CR>
-    noremap <Leader>V :call proven#OpenUnitTest()<CR>:make<CR>
+    noremap <Leader>v :ProvenOpenTest<CR>
+    noremap <Leader>V :ProvenOpenTest<CR>:make<CR>
 
 Configuration
 =============
 
-    " Has the same meaning as with the perl ft (0=-w, 1=-W)
-    let g:perl_compiler_force_warnings=0
+    " Sets warnings flag with -w (0) or -W (1) (default is 0)
+    let g:proven_force_warn=0
 
-    " Enables/disables taint mode (disabled by default)
-    let g:perl_compiler_force_taint_mode=1
+    " Sets taint mode with -T (default is 0)
+    let g:proven_taint_mode=1
+
+    " Open in tab (default is 1)
+    let g:proven_open_in_tab=1
 
 Credits
 =======
