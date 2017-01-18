@@ -1,7 +1,8 @@
 " Vim Compiler File
 " Compiler:     runs perl's Test::Unit 'prove'
 " Maintainer:   Jeff Ober <sysread@fastmail.com>
-" OriginalMaintainer:   Christian J. Robinson <infynity@onewest.net>
+" PreviousMaintainer: harmen-cpan@millionmonkeys.nl
+" OriginalMaintainer: Christian J. Robinson <infynity@onewest.net>
 " Creation:  2005 Jul 28
 " Creation:  2005 Jul 29
 "
