@@ -1,7 +1,8 @@
-autocmd! BufEnter,BufNewFile *.t set ft=perl
-autocmd  BufEnter,BufNewFile *.t compiler perlprove
+if exists('g:autoloaded_proven') || &cp
+  finish
+endif
 
-function! PerlProveOpenUnitTest()
+function! proven#OpenUnitTest()
   let l:f = expand("%")
 
   if filereadable(l:f)
@@ -24,3 +25,4 @@ function! PerlProveOpenUnitTest()
   endif
 endfunction
 
+let g:autoloaded_proven = 1

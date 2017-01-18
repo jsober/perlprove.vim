@@ -1,20 +1,7 @@
-" Vim Compiler File
-" Compiler:     runs perl's Test::Unit 'prove'
-" Maintainer:   Jeff Ober <sysread@fastmail.com>
-" PreviousMaintainer: harmen-cpan@millionmonkeys.nl
-" OriginalMaintainer: Christian J. Robinson <infynity@onewest.net>
-" Creation:  2005 Jul 28
-" Creation:  2005 Jul 29
-"
-" Installation:
-" - Copy this file to ~/.vim/compiler/
-" - Add to yor .vimrc:
-"   au BufRead,BufNewFile *.t set filetype=perl | compiler perlprove
-
 if exists("current_compiler")
   finish
 endif
-let current_compiler = "perlprove"
+let current_compiler = "proven"
 
 if exists(":CompilerSet") != 2 " older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
@@ -54,9 +41,6 @@ CompilerSet efm+=%-G%.%#syntax\ OK
 CompilerSet efm+=%m\ at\ %f\ line\ %l.
 CompilerSet efm+=%+A%.%#\ at\ %f\ line\ %l\\,%.%#
 CompilerSet efm+=%+C%.%#
-
-"Ignore all other messages
-"CompilerSet efm+=%-G%.%#
 
 let &cpo = s:savecpo
 unlet s:savecpo
