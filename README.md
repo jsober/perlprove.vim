@@ -14,45 +14,45 @@ Using Vundle
 
 Add to your .vimrc between `call vundle#begin()` and `call vundle#end()`:
 
-  Plugin 'jsober/proven.vim'
+    Plugin 'jsober/proven.vim'
 
 Then install from within vim:
 
-  :VundleInstall
+    :VundleInstall
 
 Manually
 --------
 
 Download or clone repo and:
 
-  mkdir -p ~/.vim/compiler
-  mkdir -p ~/.vim/autoload
+    mkdir -p ~/.vim/compiler
+    mkdir -p ~/.vim/autoload
 
-  cd /path/to/wherever/you/put/proven
-  cp compiler/proven.vim ~/.vim/compiler
-  cp autoload/proven.vim ~/.vim/autoload
+    cd /path/to/wherever/you/put/proven
+    cp compiler/proven.vim ~/.vim/compiler
+    cp autoload/proven.vim ~/.vim/autoload
 
 Enable
 ======
 
 Add to your .vimrc:
 
-  " Configure the compiler
-  autocmd! BufEnter,BufNewFile *.t set ft=perl
-  autocmd  BufEnter,BufNewFile *.t compiler proven
+    " Configure the compiler
+    autocmd! BufEnter,BufNewFile *.t set ft=perl
+    autocmd  BufEnter,BufNewFile *.t compiler proven
 
-  " Add some handy mappings
-  noremap <Leader>v :call proven#OpenUnitTest()<CR>
-  noremap <Leader>V :call proven#OpenUnitTest()<CR>:make<CR>
+    " Add some handy mappings
+    noremap <Leader>v :call proven#OpenUnitTest()<CR>
+    noremap <Leader>V :call proven#OpenUnitTest()<CR>:make<CR>
 
 Configuration
 =============
 
-  " Has the same meaning as with the perl ft (0=-w, 1=-W)
-  let g:perl_compiler_force_warnings=0
+    " Has the same meaning as with the perl ft (0=-w, 1=-W)
+    let g:perl_compiler_force_warnings=0
 
-  " Enables/disables taint mode (disabled by default)
-  let g:perl_compiler_force_taint_mode=1
+    " Enables/disables taint mode (disabled by default)
+    let g:perl_compiler_force_taint_mode=1
 
 Credits
 =======
