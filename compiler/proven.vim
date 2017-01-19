@@ -22,25 +22,21 @@ else
   let s:taintopt = ''
 endif
 
-exe 'CompilerSet makeprg=prove\ --nocolor\ --nocount\ -lmfv' . s:warnopt . s:taintopt . '\ %'
+exe 'CompilerSet makeprg=prove\ --nocolor\ --nocount\ -lmv' . s:warnopt . s:taintopt . '\ %'
 
-"TAP ok
-CompilerSet efm =%+Cok\ %.%#
+CompilerSet efm=%+I#\ Looks\ like\ you\ %m.
 
-"TAP not ok
-CompilerSet efm+=%Enot\ ok\ %.%#
-CompilerSet efm+=%C
-CompilerSet efm+=%C#\ %#Failed\ test\ '%m'
-CompilerSet efm+=%Z#\ %#at\ %f\ line\ %l.
-CompilerSet efm+=%Z#\ %#in\ %f\ at\ line\ %l.
-CompilerSet efm+=%+C#%.%#
+"TAP errors
+CompilerSet efm+=%+E\ %##\ %#Failed\ test\ '%m'
+CompilerSet efm+=%Z\ %##\ %#at\ %f\ line\ %l.
+CompilerSet efm+=%Z\ %##\ %#in\ %f\ at\ line\ %l.
 
 "Perl syntax errors, etc, from perl compiler package
-CompilerSet efm+=%-G%.%#had\ compilation\ errors.
-CompilerSet efm+=%-G%.%#syntax\ OK
-CompilerSet efm+=%m\ at\ %f\ line\ %l.
-CompilerSet efm+=%+A%.%#\ at\ %f\ line\ %l\\,%.%#
-CompilerSet efm+=%+C%.%#
+"CompilerSet efm+=%-G%.%#had\ compilation\ errors.
+"CompilerSet efm+=%-G%.%#syntax\ OK
+"CompilerSet efm+=%m\ at\ %f\ line\ %l.
+"CompilerSet efm+=%+A%.%#\ at\ %f\ line\ %l\\,%.%#
+"CompilerSet efm+=%+C%.%#
 
 let &cpo = s:savecpo
 unlet s:savecpo
