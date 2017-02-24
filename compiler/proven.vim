@@ -48,7 +48,7 @@ endif
 
 let s:compilerstr = s:compilername . s:compileropt . s:warnings . s:taintmode . s:includes . s:modules . '\ %'
 
-echo 'CompilerSet makeprg=' . s:compilerstr
+"echo 'CompilerSet makeprg=' . s:compilerstr
 
 exe 'CompilerSet makeprg=' . s:compilerstr
 
