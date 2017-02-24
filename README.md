@@ -28,6 +28,7 @@ Add to your .vimrc:
     " Configure the compiler
     autocmd! BufEnter,BufNewFile *.t set ft=perl
     autocmd  BufEnter,BufNewFile *.t compiler proven
+    autocmd  BufEnter,BufNewFile *.p[ml] compiler proven
 
     " Add some handy mappings
     noremap <Leader>v :ProvenOpenTest<CR>
@@ -41,6 +42,12 @@ Configuration
 
     " Sets taint mode with -T (default is 0)
     let g:proven_taint_mode=1
+
+    " Include directory paths
+    let g:proven_dash_I=['lib', '/some/other/lib']
+
+    " Pre-load modules
+    let g:proven_dash_M=['Some::Package', 'Another::Package']
 
     " Open in tab (default is 1)
     let g:proven_open_in_tab=1
